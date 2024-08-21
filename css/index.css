@@ -8,7 +8,7 @@
   font-family: "Nunito", sans-serif;
   /* border: 1px solid red;  */
 }
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -20,8 +20,37 @@ html{
   & #foto {
     width: 150px;
     height: 150px;
-    background-color: red;
     border-radius: 50%;
+    overflow: hidden;
+    padding: 6px;
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      background-size: 100% 300%;
+      background-position: top;
+      background-image: linear-gradient(
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        purple
+      );
+      animation: rgb alternate infinite 2s;
+    }
+    & img {
+      width: 100%;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
   }
   & main {
     flex: 1;
@@ -37,23 +66,23 @@ html{
         & h6 {
           font-size: 20px;
         }
-        & nav{
+        & nav {
           margin-top: 16px;
-          & a{
+          & a {
             display: block;
-            color: #AAAAAA;
+            color: #aaaaaa;
             padding-bottom: 6px;
             position: relative;
             transition-duration: 200ms;
-            &:hover{
+            &:hover {
               color: red;
-              &::after{
+              &::after {
                 width: 16px;
                 left: calc(50% - 8px);
                 opacity: 1;
               }
             }
-            &::after{
+            &::after {
               content: "";
               width: 0;
               height: 4px;
@@ -71,18 +100,6 @@ html{
       & ul {
         display: flex;
         gap: 16px;
-        /* & li{
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: red;
-            border-radius: 50%;
-            & a{
-                display: block;
-            }
-        } */
         & li {
           & a {
             display: block;
@@ -98,65 +115,132 @@ html{
         }
       }
     }
-    & #sobre{
-      & h2{
+    & #sobre {
+      & h2 {
         font-size: 48px;
         margin-bottom: 26px;
       }
-      & p{
+      & p {
         width: 700px;
         font-size: 18px;
         margin-bottom: 16px;
       }
     }
-    & #linguagens{
+    & #linguagens {
       margin-top: 100px;
-      & ul{
+      & ul {
         display: flex;
         gap: 16px;
-        & li{
+        & li {
           flex: 1;
           height: 100px;
           background-color: red;
         }
       }
     }
-    & #experiencias{
-      & h2{
+    & #experiencias {
+      & h2 {
         font-size: 48px;
       }
-      ul{
+      ul {
         display: flex;
         gap: 16px;
         & li {
           flex: 1;
           padding: 12px;
           border-radius: 10px;
-          & img{
+          & img {
             width: 100%;
             display: block;
             aspect-ratio: 1;
           }
-          & h5{
+          & h5 {
             margin-top: 16px;
             font-size: 20px;
-            color: #7CFFB0;
-            & span{
+            color: #7cffb0;
+            & span {
               display: block;
               font-size: 14px;
-              color: #FFFFFF;
+              color: #ffffff;
             }
           }
-          & h6{
-            color: #FFFFFF;
+          & h6 {
+            color: #ffffff;
             margin-top: 6px;
           }
           background-color: red;
         }
       }
     }
-    & #projetos{
-
+    & #projetos {
     }
+  }
+}
+
+/* Tablet na horizontal */
+@media only screen and (max-width: 1024px) {
+  #principal {
+    width: 100%;
+    padding: 60px;
+  }
+}
+
+/* Tablet na vertical */
+@media only screen and (max-width: 768px) {
+  #principal {
+    flex-direction: column;
+    align-items: center;
+    & main {
+      & #topo {
+        flex-direction: column;
+        margin-bottom: 0;
+        & div{
+          text-align: center;
+        }
+        & ul{
+          justify-content: center;
+          margin-bottom: 26px;
+        }
+      }
+      & #sobre{
+        & p{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* smartphones */
+@media only screen and (max-width: 600px) {
+  #principal{
+    padding: 16px;
+    & main{
+      & #topo{
+        & div{
+          & h1{
+            font-size: 26px;
+          }
+        } 
+      }
+      & #linguagens{
+        & ul{
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          & li{
+            flex: initial;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rgb {
+  0% {
+    background-position: top;
+  }
+  100% {
+    background-position: bottom;
   }
 }
